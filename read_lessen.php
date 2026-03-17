@@ -1,65 +1,32 @@
 <?php
+include 'database.php';
+include 'header.php';
 
 /*
-Session starten om opgeslagen lessen te lezen
+Alle lessen ophalen uit database
 */
-
-session_start();
-
-/*
-Als er nog geen lessen bestaan maken we een lege array
-*/
-
-$lessen = [];
-
-if(isset($_SESSION['lessen'])){
-
-$lessen = $_SESSION['lessen'];
-
-}
-
+$stmt = $conn->query("SELECT * FROM lessen ORDER BY datum, tijd");
+$lessen = $stmt->fetchAll();
 ?>
 
-<h1>Overzicht van Lessen</h1>
+<h1>Overzicht Lessen</h1>
 
-<?php
+<?php if(empty($lessen)): ?>
+<p>Geen lessen gevonden</p>
+<?php else: ?>
 
-/*
-UNHAPPY SCENARIO
-Als er nog geen lessen zijn
-*/
+<?php foreach($lessen as $les): ?>
 
-if(empty($lessen)){
+<div class="card">
+  <h3><?= $les['lesnaam'] ?></h3>
+  <p><?= $les['trainer'] ?></p>
+  <p><?= $les['datum'] ?> - <?= $les['tijd'] ?></p>
 
-echo "Er zijn nog geen lessen toegevoegd.";
+  <a href="update_les.php?id=<?= $les['id'] ?>">Bewerken</a>
+  <a href="delete_les.php?id=<?= $les['id'] ?>">Verwijderen</a>
+  <a href="reservering.php?id=<?= $les['id'] ?>">Reserveer</a>
+</div>
 
-}
+<?php endforeach; ?>
 
-/*
-HAPPY SCENARIO
-Lessen tonen met een foreach loop
-*/
-
-else{
-
-foreach($lessen as $index => $les){
-
-echo $les['lesnaam'] . " - ";
-echo $les['trainer'] . " - ";
-echo $les['datum'] . " - ";
-echo $les['tijd'];
-
-/*
-Links voor UPDATE en DELETE
-*/
-
-echo " <a href='update_les.php?id=$index'>Bewerken</a>";
-echo " <a href='delete_les.php?id=$index'>Verwijderen</a>";
-
-echo "<br>";
-
-}
-
-}
-
-?>
+<?php endif; ?>
