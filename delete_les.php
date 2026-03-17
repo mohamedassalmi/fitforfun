@@ -1,26 +1,11 @@
 <?php
-
-/*
-Session starten
-*/
-
-session_start();
-
-/*
-ID ophalen van de les die verwijderd moet worden
-*/
+include 'database.php';
 
 $id = $_GET['id'];
 
-/*
-Les verwijderen uit de array
-*/
+$stmt = $conn->prepare("DELETE FROM lessen WHERE id = ?");
+$stmt->execute([$id]);
 
-unset($_SESSION['lessen'][$id]);
-
-echo "Les succesvol verwijderd.";
-
-echo "<br><a href='read_lessen.php'>Terug naar overzicht</a>";
-
+echo "Les verwijderd!";
+echo "<br><a href='read_lessen.php'>Terug</a>";
 ?>
-
