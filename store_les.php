@@ -74,4 +74,25 @@ echo "<br><a href='read_lessen.php'>Bekijk lessen overzicht</a>";
 
 }
 
+<?php
+include 'database.php';
+
+/*
+Formulier data ophalen
+*/
+$lesnaam = $_POST['lesnaam'];
+$trainer = $_POST['trainer'];
+$datum = $_POST['datum'];
+$tijd = $_POST['tijd'];
+
+/*
+Prepared statement voor veiligheid
+*/
+$stmt = $conn->prepare("INSERT INTO lessen (lesnaam, trainer, datum, tijd) VALUES (?, ?, ?, ?)");
+$stmt->execute([$lesnaam, $trainer, $datum, $tijd]);
+
+echo "Les succesvol toegevoegd!";
+echo "<br><a href='read_lessen.php'>Ga terug</a>";
+?>
+
 ?>
