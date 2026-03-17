@@ -1,31 +1,42 @@
-/*
-JavaScript controleert of alle velden zijn ingevuld
-voordat het formulier wordt verzonden
-*/
-
 function controleFormulier(){
 
-let lesnaam = document.getElementById("lesnaam").value;
-let trainer = document.getElementById("trainer").value;
-let datum = document.getElementById("datum").value;
-let tijd = document.getElementById("tijd").value;
+let velden = ["lesnaam","trainer","datum","tijd"];
+let geldig = true;
 
-/*
-Unhappy scenario
-*/
+velden.forEach(id => {
+  let input = document.getElementById(id);
 
-if(lesnaam == "" || trainer == "" || datum == "" || tijd == ""){
+  if(input.value === ""){
+    input.style.border = "2px solid red";
+    geldig = false;
+  } else {
+    input.style.border = "1px solid green";
+  }
+});
 
-alert("Alle velden moeten ingevuld worden.");
+if(!geldig){
+  alert("Niet alles is ingevuld!");
+}
 
-return false;
-
+return geldig;
 }
 
 /*
-Happy scenario
+Extra functionaliteit voor UX
 */
 
-return true;
+document.addEventListener("DOMContentLoaded", function(){
 
-}
+let inputs = document.querySelectorAll("input");
+
+inputs.forEach(input => {
+  input.addEventListener("focus", () => {
+    input.style.backgroundColor = "#e0f7fa";
+  });
+
+  input.addEventListener("blur", () => {
+    input.style.backgroundColor = "white";
+  });
+});
+
+});
