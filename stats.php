@@ -67,7 +67,7 @@ if(empty($telling)){
 
         echo "<div class='les'>";
         echo "<strong>$maand</strong> : $aantal leden";
-        echo "</div>";
+        echo "</div>";      
 
     }
 
