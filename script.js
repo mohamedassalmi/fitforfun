@@ -110,12 +110,12 @@ function filterLessen(){
 
     lessen.forEach(les => {
 
-        let tekst = les.innerText.toLowerCase();
+            let tekst = les.innerText.toLowerCase();
 
-        if(tekst.includes(zoek)){
-            les.style.display = "";
-        }else{
-            les.style.display = "none";
+            if(tekst.includes(zoek)){
+                les.style.display = "";
+            }else{
+                les.style.display = "none";
         }
 
     });
