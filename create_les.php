@@ -19,11 +19,11 @@ De data wordt verzonden naar store_les.php
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Nieuwe Les Toevoegen</title>
+        <title>Nieuwe Les Toevoegen</title>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-</head>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
 
 <body>
 
