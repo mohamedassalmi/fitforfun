@@ -1,65 +1,74 @@
 <?php
-
 /*
-Session starten om opgeslagen lessen te lezen
+=========================================================
+READ_LESSEN.PHP
+
+Toont alle lessen.
+
+Functionaliteit:
+- Overzicht tonen
+- Zoeken/filteren
+- Bewerken
+- Verwijderen
+=========================================================
 */
 
 session_start();
 
 /*
-Als er nog geen lessen bestaan maken we een lege array
+Lessen ophalen uit session
 */
-
-$lessen = [];
-
-if(isset($_SESSION['lessen'])){
-
-$lessen = $_SESSION['lessen'];
-
-}
-
+$lessen = $_SESSION['lessen'] ?? [];
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+
+<body>
+
 <h1>Overzicht van Lessen</h1>
+
+<!-- Zoekfunctie -->
+<input type="text" id="zoek" onkeyup="filterLessen()" placeholder="Zoek les...">
+<br><br>
 
 <?php
 
 /*
 UNHAPPY SCENARIO
-Als er nog geen lessen zijn
 */
-
 if(empty($lessen)){
-
-echo "Er zijn nog geen lessen toegevoegd.";
-
+    echo "Er zijn nog geen lessen.";
 }
 
 /*
 HAPPY SCENARIO
-Lessen tonen met een foreach loop
 */
-
 else{
 
-foreach($lessen as $index => $les){
+    foreach($lessen as $i => $les){
 
-echo $les['lesnaam'] . " - ";
-echo $les['trainer'] . " - ";
-echo $les['datum'] . " - ";
-echo $les['tijd'];
+        echo "<div class='les'>";
 
-/*
-Links voor UPDATE en DELETE
-*/
+        echo "<strong>".$les['lesnaam']."</strong> - ";
+        echo $les['trainer']." - ";
+        echo $les['datum']." - ";
+        echo $les['tijd'];
 
-echo " <a href='update_les.php?id=$index'>Bewerken</a>";
-echo " <a href='delete_les.php?id=$index'>Verwijderen</a>";
+        /*
+        Acties
+        */
+        echo " <a href='update_les.php?id=$i'>Bewerken</a>";
+        echo " <a href='delete_les.php?id=$i' onclick='return confirmDelete()'>Verwijderen</a>";
 
-echo "<br>";
-
+        echo "</div><br>";
+    }
 }
-
-}
-
 ?>
+
+</body>
+</html>

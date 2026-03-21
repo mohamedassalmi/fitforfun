@@ -1,7 +1,16 @@
 <?php
-
 /*
-Session starten
+=========================================================
+SAVE_UPDATE.PHP
+
+Doel:
+Opslaan van aangepaste lesgegevens.
+
+Werking:
+- Data ophalen via POST
+- Oude les overschrijven
+- Redirect naar overzicht
+=========================================================
 */
 
 session_start();
@@ -9,24 +18,23 @@ session_start();
 /*
 ID ophalen
 */
-
 $id = $_POST['id'];
 
 /*
-Lesgegevens opnieuw opslaan
+Nieuwe data opslaan
 */
-
 $_SESSION['lessen'][$id] = [
 
-"lesnaam" => $_POST['lesnaam'],
-"trainer" => $_POST['trainer'],
-"datum" => $_POST['datum'],
-"tijd" => $_POST['tijd']
+    "lesnaam" => $_POST['lesnaam'],
+    "trainer" => $_POST['trainer'],
+    "datum" => $_POST['datum'],
+    "tijd" => $_POST['tijd']
 
 ];
 
-echo "Les succesvol aangepast.";
-
-echo "<br><a href='read_lessen.php'>Terug naar overzicht</a>";
-
+/*
+Redirect
+*/
+header("Location: read_lessen.php");
+exit;
 ?>

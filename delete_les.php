@@ -1,26 +1,41 @@
 <?php
-
 /*
-Session starten
+=========================================================
+DELETE_LES.PHP
+
+Doel:
+Verwijderen van een les uit de session.
+
+Werking:
+- ID wordt via GET ontvangen
+- Les wordt verwijderd uit array
+- Daarna redirect naar overzicht
+=========================================================
 */
 
 session_start();
 
 /*
-ID ophalen van de les die verwijderd moet worden
+Controle of ID bestaat
 */
+if(isset($_GET['id'])){
 
-$id = $_GET['id'];
+    $id = $_GET['id'];
+
+    /*
+    Controle of les bestaat
+    */
+    if(isset($_SESSION['lessen'][$id])){
+
+        unset($_SESSION['lessen'][$id]);
+
+    }
+
+}
 
 /*
-Les verwijderen uit de array
+Redirect naar overzicht
 */
-
-unset($_SESSION['lessen'][$id]);
-
-echo "Les succesvol verwijderd.";
-
-echo "<br><a href='read_lessen.php'>Terug naar overzicht</a>";
-
+header("Location: read_lessen.php");
+exit;
 ?>
-

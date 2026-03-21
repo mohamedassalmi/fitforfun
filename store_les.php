@@ -1,77 +1,57 @@
 <?php
-
 /*
-Session starten zodat we gegevens tijdelijk
-kunnen opslaan zonder database
+=========================================================
+STORE_LES.PHP
+
+Dit bestand verwerkt het formulier van create_les.php
+
+Taken:
+- Data ophalen via POST
+- Validatie uitvoeren
+- Opslaan in session
+- Redirect naar overzicht
+=========================================================
 */
 
 session_start();
 
 /*
-Formuliergegevens ophalen via POST
+Data ophalen
 */
-
 $lesnaam = $_POST['lesnaam'];
 $trainer = $_POST['trainer'];
 $datum = $_POST['datum'];
 $tijd = $_POST['tijd'];
 
-
 /*
 UNHAPPY SCENARIO
 Controle of velden leeg zijn
 */
-
 if($lesnaam == "" || $trainer == "" || $datum == "" || $tijd == ""){
-
-echo "Fout: alle velden moeten ingevuld worden.";
-
+    echo "Fout: alle velden moeten ingevuld worden.";
+    exit;
 }
 
 /*
-HAPPY SCENARIO
-Les toevoegen aan de array
+SESSION initialiseren indien nodig
 */
-
-else{
-
-/*
-Als de array nog niet bestaat maken we hem aan
-*/
-
 if(!isset($_SESSION['lessen'])){
-
-$_SESSION['lessen'] = [];
-
+    $_SESSION['lessen'] = [];
 }
 
 /*
-Nieuwe les opslaan in een associative array
+Les opslaan in array
 */
-
-$les = [
-
-"lesnaam" => $lesnaam,
-"trainer" => $trainer,
-"datum" => $datum,
-"tijd" => $tijd
-
+$_SESSION['lessen'][] = [
+    "lesnaam" => $lesnaam,
+    "trainer" => $trainer,
+    "datum" => $datum,
+    "tijd" => $tijd
 ];
 
 /*
-Les toevoegen aan de lijst met lessen
+Redirect naar overzicht
 */
-
-$_SESSION['lessen'][] = $les;
-
-echo "Les succesvol toegevoegd!";
-
-/*
-Link naar overzicht pagina
-*/
-
-echo "<br><a href='read_lessen.php'>Bekijk lessen overzicht</a>";
-
-}
-
+header("Location: read_lessen.php");
+exit;
 ?>

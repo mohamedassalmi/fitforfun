@@ -1,51 +1,65 @@
+<?php
+/*
+=========================================================
+INDEX.PHP
+Hoofdpagina van het FitForFree systeem
+
+Vanuit deze pagina kan de gebruiker navigeren naar:
+- Lessen beheren
+- Reserveringen maken
+- Statistieken bekijken
+
+Dit bestand bevat alleen frontend navigatie.
+=========================================================
+*/
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <title>FitForFree Dashboard</title>
 
-<title>FitForFree Dashboard</title>
+    <!-- CSS koppeling -->
+    <link rel="stylesheet" href="style.css">
 
-<a href="index.php">Home</a> |
-<a href="create_les.php">Nieuwe les</a> |
-<a href="read_lessen.php">Overzicht lessen</a>
-
+    <!-- JavaScript koppeling -->
+    <script src="script.js"></script>
 </head>
 
 <body>
 
 <h1>FitForFree Systeem</h1>
 
-<!--
-Dit is de hoofdpagina van de applicatie.
-Vanuit hier kan de gebruiker naar verschillende functies navigeren.
--->
+<div class="container">
 
-<div>
+    <!-- Navigatie knoppen -->
 
-<!--
-Knop naar CRUD functie: nieuwe les toevoegen
--->
+    <!-- Nieuwe les -->
+    <a href="create_les.php">
+        <button>Nieuwe les maken</button>
+    </a>
+    <br><br>
 
-<a href="create_les.php">
-<button>Nieuwe les maken</button>
-</a>
+    <!-- Overzicht lessen -->
+    <a href="read_lessen.php">
+        <button>Overzicht lessen</button>
+    </a>
+    <br><br>
 
-<br><br>
+    <!-- Reservering -->
+    <a href="reservering.php">
+        <button>Nieuwe reservering</button>
+    </a>
+    <br><br>
 
-<!--
-Knop naar overzicht van lessen
--->
+    <!-- Statistiek -->
+    <a href="stats.php">
+        <button>Leden per periode</button>
+    </a>
+    <br><br>
 
-<a href="read_lessen.php">
-<button>Overzicht lessen</button>
-</a>
-
-<br><br>
-
-<!--
-Hier kan later nog een reservering systeem komen
--->
-
-<button>Niewe reservering toevoegen (nog niet gemaakt)</button>
+    <!-- Extra feature -->
+    <button onclick="toggleDarkMode()">Dark mode</button>
 
 </div>
 

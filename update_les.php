@@ -1,37 +1,45 @@
 <?php
-
 /*
-Session starten
+=========================================================
+UPDATE_LES.PHP
+
+Doel:
+Formulier tonen om een bestaande les aan te passen.
+
+Werking:
+- ID ophalen via GET
+- Les ophalen uit session
+- Formulier vullen met bestaande data
+=========================================================
 */
 
 session_start();
 
 /*
-ID ophalen via GET
+ID ophalen
 */
-
 $id = $_GET['id'];
 
 /*
-Specifieke les ophalen
+Les ophalen
 */
-
 $les = $_SESSION['lessen'][$id];
-
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+
+<body>
 
 <h1>Les aanpassen</h1>
 
-<!--
-Formulier voor het aanpassen van een les
--->
-
 <form action="save_update.php" method="POST">
 
-<!--
-Hidden input om het ID van de les mee te sturen
--->
-
+<!-- Hidden input voor ID -->
 <input type="hidden" name="id" value="<?php echo $id; ?>">
 
 <label>Lesnaam</label>
@@ -53,3 +61,6 @@ Hidden input om het ID van de les mee te sturen
 <button type="submit">Opslaan</button>
 
 </form>
+
+</body>
+</html>

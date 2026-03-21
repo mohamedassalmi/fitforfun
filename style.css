@@ -1,16 +1,39 @@
+/*
+=========================================================
+STYLE.CSS
+
+Bevat styling voor de applicatie
+=========================================================
+*/
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+    font-family: Arial;
+    background-color: #f4f4f4;
+    text-align: center;
 }
 
-h1 {
-  color: #333;
-  text-align: center;
-}
-
+/* Container */
 .container {
-  max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
+    margin-top: 50px;
+}
+
+/* Knoppen */
+button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+/* Les blok */
+.les {
+    background: white;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+/* Dark mode */
+.dark {
+    background: black;
+    color: white;
 }
