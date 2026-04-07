@@ -1,40 +1,31 @@
 <?php
-/*
-=========================================================
-SAVE_UPDATE.PHP
-
-Doel:
-Opslaan van aangepaste lesgegevens.
-
-Werking:
-- Data ophalen via POST
-- Oude les overschrijven
-- Redirect naar overzicht
-=========================================================
-*/
-
 session_start();
 
-/*
-ID ophalen
-*/
+// UNHAPPY
+if(!isset($_POST['id'])){
+    echo "Fout: geen ID ontvangen.";
+    exit;
+}
+
 $id = $_POST['id'];
 
-/*
-Nieuwe data opslaan
-*/
-$_SESSION['lessen'][$id] = [
+if(!isset($_SESSION['lessen'][$id])){
+    echo "Fout: les bestaat niet.";
+    exit;
+}
 
+if($_POST['lesnaam'] == "" || $_POST['trainer'] == ""){
+    echo "Fout: velden zijn verplicht.";
+    exit;
+}
+
+// HAPPY
+$_SESSION['lessen'][$id] = [
     "lesnaam" => $_POST['lesnaam'],
     "trainer" => $_POST['trainer'],
     "datum" => $_POST['datum'],
     "tijd" => $_POST['tijd']
-
 ];
 
-/*
-Redirect
-*/
 header("Location: read_lessen.php");
 exit;
-?>

@@ -3,44 +3,43 @@
 =========================================================
 STORE_LES.PHP
 
-Dit bestand verwerkt het formulier van create_les.php
+Doel:
+Opslaan van een nieuwe les.
 
-Taken:
+Werking:
 - Data ophalen via POST
 - Validatie uitvoeren
 - Opslaan in session
-- Redirect naar overzicht
 =========================================================
 */
 
 session_start();
 
 /*
-Data ophalen
+Data ophalen + opschonen
 */
-$lesnaam = $_POST['lesnaam'];
-$trainer = $_POST['trainer'];
-$datum = $_POST['datum'];
-$tijd = $_POST['tijd'];
+$lesnaam = isset($_POST['lesnaam']) ? trim($_POST['lesnaam']) : "";
+$trainer = isset($_POST['trainer']) ? trim($_POST['trainer']) : "";
+$datum = isset($_POST['datum']) ? $_POST['datum'] : "";
+$tijd = isset($_POST['tijd']) ? $_POST['tijd'] : "";
 
 /*
 UNHAPPY SCENARIO
-Controle of velden leeg zijn
 */
-if($lesnaam == "" || $trainer == "" || $datum == "" || $tijd == ""){
-    echo "Fout: alle velden moeten ingevuld worden.";
+if($lesnaam === "" || $trainer === "" || $datum === "" || $tijd === ""){
+    echo "Fout: alle velden zijn verplicht.";
     exit;
 }
 
 /*
-SESSION initialiseren indien nodig
+Session initialiseren
 */
 if(!isset($_SESSION['lessen'])){
     $_SESSION['lessen'] = [];
 }
 
 /*
-Les opslaan in array
+HAPPY SCENARIO
 */
 $_SESSION['lessen'][] = [
     "lesnaam" => $lesnaam,
@@ -50,8 +49,7 @@ $_SESSION['lessen'][] = [
 ];
 
 /*
-Redirect naar overzicht
+Redirect
 */
 header("Location: read_lessen.php");
 exit;
-?>
