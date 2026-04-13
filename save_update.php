@@ -20,7 +20,7 @@ if($_POST['lesnaam'] == "" || $_POST['trainer'] == ""){
 }
 
 // HAPPY
-$_SESSION['lessen'][$id] = [ ccccccccccccccccccccccccccc
+$_SESSION['lessen'][$id] = [ 
     "lesnaam" => $_POST['lesnaam'],
     "trainer" => $_POST['trainer'],
     "datum" => $_POST['datum'],
