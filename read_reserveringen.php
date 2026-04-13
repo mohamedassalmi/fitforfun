@@ -2,22 +2,19 @@
 /*
 =========================================================
 READ_RESERVERINGEN.PHP
-
-Doel:
-Overzicht tonen van alle reserveringen.
-
-Functionaliteit:
-- Alle reserveringen tonen
-- Mogelijkheid om te verwijderen
 =========================================================
 */
 
 session_start();
 
 /*
-Reserveringen ophalen uit session
+Session check
 */
-$reserveringen = $_SESSION['reserveringen'] ?? [];
+if(!isset($_SESSION['reserveringen'])){
+    $_SESSION['reserveringen'] = [];
+}
+
+$reserveringen = $_SESSION['reserveringen'];
 ?>
 
 <!DOCTYPE html>
@@ -30,16 +27,12 @@ $reserveringen = $_SESSION['reserveringen'] ?? [];
 <h1>Overzicht Reserveringen</h1>
 
 <?php
-/*
-UNHAPPY SCENARIO
-*/
-if(empty($reserveringen)){
-    echo "Geen reserveringen.";
+// UNHAPPY
+if(count($reserveringen) === 0){
+    echo "Geen reserveringen gevonden.";
 }
 
-/*
-HAPPY SCENARIO
-*/
+// HAPPY
 else{
     foreach($reserveringen as $i => $r){
 
@@ -49,9 +42,6 @@ else{
         echo $r['les']." - ";
         echo $r['datum'];
 
-        /*
-        Actie: verwijderen
-        */
         echo " <a href='delete_reservering.php?id=$i'>Verwijderen</a>";
 
         echo "</div><br>";

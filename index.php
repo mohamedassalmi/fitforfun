@@ -1,16 +1,6 @@
 <?php
 /*
-=========================================================
 INDEX.PHP
-Hoofdpagina van het FitForFree systeem
-
-Vanuit deze pagina kan de gebruiker navigeren naar:
-- Lessen beheren
-- Reserveringen maken
-- Statistieken bekijken
-
-Dit bestand bevat alleen frontend navigatie.
-=========================================================
 */
 ?>
 
@@ -19,10 +9,7 @@ Dit bestand bevat alleen frontend navigatie.
 <head>
     <title>FitForFree Dashboard</title>
 
-    <!-- CSS koppeling -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- JavaScript koppeling -->
     <script src="script.js"></script>
 </head>
 
@@ -32,38 +19,50 @@ Dit bestand bevat alleen frontend navigatie.
 
 <div class="container">
 
-    <!-- Navigatie knoppen -->
-
-    <!-- Nieuwe les -->
+    <!-- LESSEN -->
     <a href="create_les.php">
         <button>Nieuwe les maken</button>
     </a>
     <br><br>
 
-    <!-- Overzicht lessen -->
     <a href="read_lessen.php">
         <button>Overzicht lessen</button>
     </a>
     <br><br>
 
-    <!-- Reservering -->
+    <!-- RESERVERINGEN -->
     <a href="reservering.php">
         <button>Nieuwe reservering</button>
     </a>
     <br><br>
 
-    <!-- Statistiek -->
+    <a href="read_reserveringen.php">
+        <button>Overzicht reserveringen</button>
+    </a>
+    <br><br>
+
+    <!-- LEDEN -->
+    <a href="read_leden.php">
+        <button>Beheer leden</button>
+    </a>
+    <br><br>
+
+    <!-- MEDEWERKERS -->
+    <a href="read_medewerker.php">
+        <button>Beheer medewerkers</button>
+    </a>
+    <br><br>
+
+    <!-- STATISTIEKEN -->
     <a href="stats.php">
         <button>Leden per periode</button>
     </a>
     <br><br>
 
-    <!-- Extra feature -->
+    <!-- EXTRA -->
     <button onclick="toggleDarkMode()">Dark mode</button>
-
-    <!-- test commit -->
 
 </div>
 
 </body>
-</html>
+</html> cccccccccccccccccccccccc

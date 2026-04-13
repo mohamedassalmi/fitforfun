@@ -2,23 +2,19 @@
 /*
 =========================================================
 READ_LESSEN.PHP
-
-Toont alle lessen.
-
-Functionaliteit:
-- Overzicht tonen
-- Zoeken/filteren
-- Bewerken
-- Verwijderen
 =========================================================
 */
 
 session_start();
 
 /*
-Lessen ophalen uit session
+Session check
 */
-$lessen = $_SESSION['lessen'] ?? [];
+if(!isset($_SESSION['lessen'])){
+    $_SESSION['lessen'] = [];
+}
+
+$lessen = $_SESSION['lessen'];
 ?>
 
 <!DOCTYPE html>
@@ -32,24 +28,17 @@ $lessen = $_SESSION['lessen'] ?? [];
 
 <h1>Overzicht van Lessen</h1>
 
-<!-- Zoekfunctie -->
 <input type="text" id="zoek" onkeyup="filterLessen()" placeholder="Zoek les...">
 <br><br>
 
 <?php
-
-/*
-UNHAPPY SCENARIO
-*/
-if(empty($lessen)){
+// UNHAPPY
+if(count($lessen) === 0){
     echo "Er zijn nog geen lessen.";
 }
 
-/*
-HAPPY SCENARIO
-*/
+// HAPPY
 else{
-
     foreach($lessen as $i => $les){
 
         echo "<div class='les'>";
@@ -59,9 +48,6 @@ else{
         echo $les['datum']." - ";
         echo $les['tijd'];
 
-        /*
-        Acties
-        */
         echo " <a href='update_les.php?id=$i'>Bewerken</a>";
         echo " <a href='delete_les.php?id=$i' onclick='return confirmDelete()'>Verwijderen</a>";
 
