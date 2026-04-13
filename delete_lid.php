@@ -25,4 +25,6 @@ unset($_SESSION['leden'][$id]);
 $_SESSION['leden'] = array_values($_SESSION['leden']);
 
 header("Location: read_leden.php");
-exit;
+exit; 
+
+cccccccccccccccccc
