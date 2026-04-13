@@ -12,7 +12,7 @@ CREATE_MEDEWERKER.PHP
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+mcdmcieonvr8errrrrrrenueriob
 <h1>Nieuwe Medewerker</h1>
 
 <form action="store_medewerker.php" method="POST">

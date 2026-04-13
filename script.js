@@ -100,7 +100,7 @@ function initLiveValidatie(){
 }
 
 // ==============================
-// ZOEK FUNCTIE
+// ZOEK FUNCTIE 
 // ==============================
 
 function filterLessen(){
